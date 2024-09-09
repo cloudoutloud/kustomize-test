@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../../global
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/destination/name
+      value: test
+    - op: replace
+      path: /metadata/name
+      value: cert-manager-dev-1
+  target:
+    group: argoproj.io
+    version: v1alpha1
+    kind: Application
+    name: cert-manager
