@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev-1-apps
+  namespace: argocd # ArgoCD is typically installed in the `argocd` namespace
+spec:
+  # Description of the project
+  description: "All aplications belonging to dev-1 clusters"
+
+  # Source Repositories that the project is allowed to deploy from
+  sourceRepos:
+  - https://github.com/my-org/my-repo.git
+  - https://gitlab.com/another-org/another-repo.git
+
+  # Destination clusters and namespaces that applications in this project can deploy to
+  destinations:
+  - namespace: dev
+    server: https://kubernetes.default.svc # Cluster URL (in-cluster Kubernetes)
